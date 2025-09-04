@@ -5,7 +5,6 @@
 package Estructuras_condicionales;
 
 import java.util.Scanner;
-
 public class Multa {
     public static void main(String[] args) {
         Scanner teclado= new Scanner(System.in);
@@ -15,7 +14,7 @@ public class Multa {
     velocidad= teclado.nextInt();
     System.out.println("Hoy es cumpleaños del conductor?");
     res=teclado.next();
-    if(res=="si"){
+    if(res.equals("si")){
     System.out.print("No hay multa");
     }else{
     if(velocidad<=60){
