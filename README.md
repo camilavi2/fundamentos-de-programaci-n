@@ -1,1 +1,0 @@
-# fundamentos-de-programaci-n
