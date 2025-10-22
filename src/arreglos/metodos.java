@@ -5,7 +5,6 @@
 package arreglos;
 
 import java.util.Scanner;
-import java.util.Scanner;
 
 public class metodos {
 
@@ -19,7 +18,26 @@ public class metodos {
         }
         return arreglo;
     }
+public static int[] agregar(int[] arreglo, int r) {
+    Scanner teclado = new Scanner(System.in);
+    int numeros = arreglo.length + r;
+    int[] na = new int[numeros];
 
+  
+    for (int i = 0; i < arreglo.length; i++) {
+        na[i] = arreglo[i];
+    }
+
+  
+    for (int i = arreglo.length; i < numeros; i++) {
+        System.out.println("Ingrese un número para agregar:");
+        na[i] = teclado.nextInt();
+    }
+
+    System.out.println("Arreglo con valores agregados:");
+    recorrerA(na);
+    return na;
+}
   
     public static void recorrerA(int[] arreglo) {
         System.out.println("Los números en el arreglo son:");
@@ -76,6 +94,7 @@ if (modificar < 0 || modificar >= arreglo.length) {
         System.out.println("\nIngresa el nuevo numero que sustituira al valor: "+arreglo[modificar]);
         int nuevo = teclado.nextInt();
         arreglo[modificar]=nuevo;
+     
       recorrerA(arreglo);
 }
       System.out.println("Desaea modificar otro valor?");
@@ -86,7 +105,6 @@ if (modificar < 0 || modificar >= arreglo.length) {
 public static int[] eliminarN(int[] arreglo) {
     Scanner teclado = new Scanner(System.in);
     String res = "si";
-
     do {
         System.out.print("Ingresa la posición del número a eliminar: ");
         int eliminar = teclado.nextInt();
@@ -117,10 +135,11 @@ public static int[] eliminarN(int[] arreglo) {
 
     return arreglo; 
 }  
-
+public static int[] eliminarTodo() {
+    System.out.println("Todos los elementos han sido eliminados.");
+    return new int[0]; 
+}
 public static void ordenar1(int arreglo[]) {
-
-
     for (int i = 0; i < arreglo.length - 1; i++) {             
         for (int p = 0; p < arreglo.length - i - 1; p++) {     
             int menor = arreglo[p];
@@ -136,7 +155,6 @@ public static void ordenar1(int arreglo[]) {
      recorrerA(arreglo);
 }
 public static void ordenar2(int arreglo[]) {
-
 
     for (int i = 0; i < arreglo.length - 1; i++) {            
         for (int p = 0; p < arreglo.length - i - 1; p++) {   
@@ -154,13 +172,15 @@ public static void ordenar2(int arreglo[]) {
 }
     public static void main(String[] args) {
         Scanner teclado = new Scanner(System.in);
-        System.out.println("¿Cuántos números desea ingresar?");
-        int n = teclado.nextInt();
+        System.out.println("¿Cuantos numeros desea ingresar?");
+        int n=teclado.nextInt();
           int[] arreglo = almacenar(n);
           String volver="si";
  do{
+         recorrerA(arreglo);
+
   System.out.println("¿que operacion desea realizar en el arreglo:");
-  System.out.println("recorrer Ascendentemete=1 \n recorrer Descendentemente=2 \n buscar valor=3 \n modificar valor=4 \n eliminar valor=5 \n ordenar de menor a mayor=6 \n ordenar de mayor a menor=7");
+  System.out.println("recorrer Ascendentemete=1 \n recorrer Descendentemente=2 \n buscar valor=3 \n modificar valor=4 \n eliminar valor=5 \n ordenar de menor a mayor=6 \n ordenar de mayor a menor=7\n agreagar valor=8 \n eliminar arreglo=9");
 int res=teclado.nextInt();
 switch(res){
        case 1:
@@ -174,11 +194,10 @@ switch(res){
      
               break;
               case 4:
-                  modificarN(arreglo);
-              
+                  modificarN(arreglo);           
 break;
 case 5:
-  eliminarN(arreglo);
+    arreglo = eliminarN(arreglo); 
 break;
  
 case 6: 
@@ -187,8 +206,21 @@ break;
 case 7:
     ordenar2(arreglo);
 break;
+case 8:
+    System.out.println("¿Cuántos números desea agregar?");
+    int r = teclado.nextInt();
+    arreglo = agregar(arreglo, r); 
+   
+    break;
+    case 9:
+      arreglo = eliminarTodo(); 
+   ordenar1(arreglo);
+    break;
+     default:
+                    System.out.println("Opción inválida.");
     } 
 System.out.println("Desea realizar otra operación?");
 volver=teclado.next();
     }while(volver.equals("si"));
+ 
 }}
